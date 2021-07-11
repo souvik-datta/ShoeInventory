@@ -48,18 +48,39 @@ class CreateNewProductFragment : Fragment() {
 
 
     private fun initView() {
+        if(arguments?.get("data") != null) {
+            binding.data = requireArguments().get("data") as Entity
+            binding.etSize.setText((requireArguments().get("data") as Entity).size.toString())
+            binding.executePendingBindings()
+        }else{
+            binding.btnCancleUpdate.visibility = View.GONE
+        }
+
         binding.ivSelectedImage.setOnClickListener {
 
         }
         binding.btnCreateProduct.setOnClickListener {
-            viewModel.insertToDb(Entity().apply {
-                name = binding.etName.text.toString().trim()
-                size = binding.etSize.text.toString().toDouble()
-                company = binding.etCompany.text.toString().trim()
-                description = binding.etDesc.text.toString().trim()
-                images = ""
-            })
-
+            if(arguments?.get("data") == null) {
+                viewModel.insertToDb(Entity().apply {
+                    name = binding.etName.text.toString().trim()
+                    size = binding.etSize.text.toString().toDouble()
+                    company = binding.etCompany.text.toString().trim()
+                    description = binding.etDesc.text.toString().trim()
+                    images = ""
+                })
+            }else{
+                viewModel.updateToDb(Entity().apply {
+                    id = (requireArguments()["data"] as Entity).id
+                    name = binding.etName.text.toString().trim()
+                    size = binding.etSize.text.toString().toDouble()
+                    company = binding.etCompany.text.toString().trim()
+                    description = binding.etDesc.text.toString().trim()
+                    images = ""
+                })
+            }
+        }
+        binding.btnCancleUpdate.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 }

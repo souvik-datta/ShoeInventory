@@ -2,10 +2,11 @@ package com.souvik.shoeinventory.local
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 import java.util.ArrayList
 
 @Entity(tableName = "ShoeStore")
-class Entity {
+class Entity : Serializable {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
     var name: String = ""

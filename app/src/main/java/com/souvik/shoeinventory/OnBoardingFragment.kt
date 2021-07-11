@@ -30,6 +30,7 @@ class OnBoardingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnNavigate.setOnClickListener {
+            binding.btnNavigate.isEnabled = false
             findNavController().navigate(R.id.action_onBoardingFragment_to_shoeListFragment)
         }
     }

@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.souvik.shoeinventory.local.AppDatabase
 import com.souvik.shoeinventory.local.Entity
+import kotlinx.coroutines.Dispatchers
 
 class ShoeListFragmentViewModel(val context: Application) : AndroidViewModel(context) {
 
@@ -15,7 +16,9 @@ class ShoeListFragmentViewModel(val context: Application) : AndroidViewModel(con
         get() = _list
 
     fun getAllData(){
-        Log.d("TAG", "getAllData: ${AppDatabase.getDatabase(context)?.getAll()}")
-        _list.value = AppDatabase.getDatabase(context)?.getAll()
+        with(Dispatchers.IO){
+            Log.d("TAG", "getAllData: ${AppDatabase.getDatabase(context)?.getAll()}")
+            _list.postValue(AppDatabase.getDatabase(context)?.getAll())
+        }
     }
 }

@@ -17,4 +17,9 @@ class CreateNewProductViewModel(val context:Application) : AndroidViewModel(cont
         AppDatabase.getDatabase(context)?.insert(data)
         _status.value = true
     }
+
+    fun updateToDb(data: Entity){
+        AppDatabase.getDatabase(context)?.update(data)
+        _status.value = true
+    }
 }

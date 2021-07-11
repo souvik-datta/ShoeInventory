@@ -52,7 +52,13 @@ class ShoeListFragment : Fragment() {
     }
 
     private fun initView() {
-        adapter = RvAdapter(list)
+        adapter = RvAdapter(list,object :RvAdapter.OnItemClick{
+            override fun onClick(position: Int) {
+                val bundle = Bundle()
+                bundle.putSerializable("data",list[position])
+                findNavController().navigate(R.id.action_shoeListFragment_to_createNewProductFragment,bundle)
+            }
+        })
         binding.rvListElement.adapter = adapter
         binding.fabAddNewProduct.setOnClickListener {
             findNavController().navigate(R.id.action_shoeListFragment_to_createNewProductFragment)

@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.souvik.shoeinventory.local.Entity" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -10,13 +18,13 @@
             android:layout_width="100dp"
             android:layout_height="0dp"
             android:layout_marginTop="20dp"
+            android:contentDescription="@string/add_new_image"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_baseline_add_24"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/add_new_image"
-            android:src="@drawable/ic_baseline_add_24"
-            android:scaleType="centerCrop" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/etName"
@@ -28,11 +36,12 @@
             android:hint="@string/enter_product_name"
             android:inputType="textShortMessage"
             android:padding="10dp"
+            android:text="@{data.name}"
+            android:textColor="@color/black"
             android:textColorHint="#85000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivSelectedImage"
-            android:textColor="@color/black"/>
+            app:layout_constraintTop_toBottomOf="@+id/ivSelectedImage" />
 
         <EditText
             android:id="@+id/etSize"
@@ -44,11 +53,11 @@
             android:hint="@string/enter_shoe_size"
             android:inputType="numberDecimal"
             android:padding="10dp"
+            android:textColor="@color/black"
             android:textColorHint="#85000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etName"
-            android:textColor="@color/black"/>
+            app:layout_constraintTop_toBottomOf="@id/etName" />
 
         <EditText
             android:id="@+id/etCompany"
@@ -60,11 +69,12 @@
             android:hint="@string/enter_company_name"
             android:inputType="textShortMessage"
             android:padding="10dp"
+            android:text="@{data.company}"
+            android:textColor="@color/black"
             android:textColorHint="#85000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etSize"
-            android:textColor="@color/black"/>
+            app:layout_constraintTop_toBottomOf="@id/etSize" />
 
         <EditText
             android:id="@+id/etDesc"
@@ -76,11 +86,12 @@
             android:hint="@string/enter_description"
             android:inputType="textMultiLine"
             android:padding="10dp"
+            android:text="@{data.description}"
+            android:textColor="@color/black"
             android:textColorHint="#85000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etCompany"
-            android:textColor="@color/black"/>
+            app:layout_constraintTop_toBottomOf="@id/etCompany" />
 
         <Button
             android:id="@+id/btnCreateProduct"
@@ -90,7 +101,17 @@
             android:text="@string/submit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etDesc"
-            app:layout_constraintVertical_bias="0.1"/>
+            app:layout_constraintVertical_bias="0.1" />
+
+        <Button
+            android:id="@+id/btnCancleUpdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/cancel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnCreateProduct"
+            app:layout_constraintVertical_bias="0.01" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
